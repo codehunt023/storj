@@ -101,25 +101,17 @@ func (service *Service) GetOperator(ctx context.Context, node nodes.Node) (_ Ope
 	}()
 
 	nodeClient := multinodepb.NewDRPCNodeClient(conn)
-	payoutClient := multinodepb.NewDRPCPayoutsClient(conn)
 	header := &multinodepb.RequestHeader{
 		ApiKey: node.APISecret,
 	}
-
-	operatorResponse, err := nodeClient.Operator(ctx, &multinodepb.OperatorRequest{Header: header})
-	if err != nil {
-		return Operator{}, Error.Wrap(err)
-	}
-	undistributedResponse, err := payoutClient.Undistributed(ctx, &multinodepb.UndistributedRequest{Header: header})
+	resp, err := nodeClient.Operator(ctx, &multinodepb.OperatorRequest{Header: header})
 	if err != nil {
 		return Operator{}, Error.Wrap(err)
 	}
 
 	return Operator{
-		NodeID:         node.ID,
-		Email:          operatorResponse.Email,
-		Wallet:         operatorResponse.Wallet,
-		WalletFeatures: operatorResponse.WalletFeatures,
-		Undistributed:  undistributedResponse.Total,
+		Email:          resp.Email,
+		Wallet:         resp.Wallet,
+		WalletFeatures: resp.WalletFeatures,
 	}, nil
 }
