@@ -797,7 +797,6 @@ func New(log *zap.Logger, full *identity.FullIdentity, db DB, revocationDB exten
 
 		peer.Multinode.Node = multinode.NewNodeEndpoint(
 			peer.Log.Named("multinode:node-endpoint"),
-			config.Operator,
 			apiKeys,
 			peer.Version.Service.Info,
 			peer.Contact.PingStats,
