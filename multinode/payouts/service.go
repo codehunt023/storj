@@ -598,7 +598,6 @@ func (service *Service) PaystubSatellitePeriod(ctx context.Context, period strin
 		Held:           response.Paystub.Held,
 		Paid:           response.Paystub.Paid,
 		Distributed:    response.Paystub.Distributed,
-		Disposed:       response.Paystub.Disposed,
 	}, nil
 }
 
@@ -648,7 +647,6 @@ func (service *Service) PaystubPeriod(ctx context.Context, period string, nodeID
 		Held:           response.Paystub.Held,
 		Paid:           response.Paystub.Paid,
 		Distributed:    response.Paystub.Distributed,
-		Disposed:       response.Paystub.Disposed,
 	}, nil
 }
 
@@ -698,7 +696,6 @@ func (service *Service) PaystubSatellite(ctx context.Context, nodeID, satelliteI
 		Held:           response.Paystub.Held,
 		Paid:           response.Paystub.Paid,
 		Distributed:    response.Paystub.Distributed,
-		Disposed:       response.Paystub.Disposed,
 	}, nil
 }
 
@@ -747,6 +744,5 @@ func (service *Service) Paystub(ctx context.Context, nodeID storj.NodeID) (_ Pay
 		Held:           response.Paystub.Held,
 		Paid:           response.Paystub.Paid,
 		Distributed:    response.Paystub.Distributed,
-		Disposed:       response.Paystub.Disposed,
 	}, nil
 }
